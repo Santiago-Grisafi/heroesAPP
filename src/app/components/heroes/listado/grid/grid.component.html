@@ -1,0 +1,7 @@
+<div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px">
+    <div fxFlex.lg="30" *ngFor="let heroe of heroes; let i = index">
+        <mat-card>
+            <app-card [heroe]="heroe"></app-card>
+        </mat-card>
+    </div>
+</div>

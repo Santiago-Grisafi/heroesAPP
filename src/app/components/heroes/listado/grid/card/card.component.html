@@ -1,0 +1,13 @@
+<mat-card-header>
+    <mat-card-title [routerLink]="['/heroes/heroe/', heroe.id]" style="cursor: pointer;">{{heroe.superhero}}</mat-card-title>
+    <mat-card-subtitle [routerLink]="['/heroes/heroe/', heroe.id]" style="cursor: pointer;">{{heroe.alter_ego}}</mat-card-subtitle>
+</mat-card-header>
+<img [src]="heroe | Imagen" [routerLink]="['/heroes/heroe/', heroe.id]">
+<mat-card-actions>
+    <button class="btn btn-info btn-block" [routerLink]="['/heroes/heroe/', heroe.id]">
+        <i class="bi bi-card-checklist"></i> Mas Información
+    </button>
+    <button class="btn btn-success btn block" [routerLink]="['/heroes/editar',heroe.id]">
+        <i class="bi bi-brush-fill"></i> Editar
+    </button>
+</mat-card-actions>

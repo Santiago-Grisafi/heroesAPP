@@ -1,0 +1,62 @@
+<div *ngIf="this.heroe.id; else nuevoHeroe">
+    <h1 class="text-center"><b> Super Heroe a editar: </b> {{heroe.superhero}}</h1>
+</div>
+<ng-template #nuevoHeroe>
+    <h1 class="text-center"><b> Nuevo Heroe: </b></h1>
+    <div class="alert alert-info"
+        *ngIf="heroe.superhero.trim().length==0 && heroe.alter_ego.trim().length==0 || heroe.superhero.trim().length==0 || heroe.alter_ego.trim().length==0">
+        <h2 class="text-center">Los campos del nombre del superheroe y del alterego están vacíos</h2>
+    </div>
+    <div class="alert alert-success" *ngIf="heroe.superhero.trim().length>0 && heroe.alter_ego.trim().length>0">
+        <h1 class="text-center">{{heroe.superhero | titlecase}} - <small>{{heroe.alter_ego | titlecase}}</small></h1>
+    </div>
+</ng-template>
+
+
+<mat-divider></mat-divider>
+<br>
+<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column" style="margin-bottom: 30px;">
+    <div fxFlex="50" fxLayout="column">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100">
+                <mat-label><i class="bi bi-chat-left-text"></i> Nombre:</mat-label>
+                <input matInput type="text" required [(ngModel)]="heroe.superhero" />
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label><i class="bi bi-chat-left-quote"></i> AlterEgo:</mat-label>
+                <input matInput type="text" required [(ngModel)]="heroe.alter_ego" />
+            </mat-form-field>
+        </div>
+        <mat-form-field fxFlex="100">
+            <mat-label><i class="bi bi-card-text"></i> Primera Aparición:</mat-label>
+            <input matInput type="text" required [(ngModel)]="heroe.first_appearance" />
+        </mat-form-field>
+        <mat-form-field fxFlex="100">
+            <mat-label>Personajes:</mat-label>
+            <input matInput type="text" required [(ngModel)]="heroe.characters" />
+        </mat-form-field>
+        <mat-form-field fxFlex="100">
+            <mat-label>Creador:</mat-label>
+            <mat-select required [(ngModel)]="heroe.publisher">
+                <mat-option *ngFor="let publisher of publishers"
+                    [value]="publisher.publisher">{{publisher.desc}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="100">
+            <mat-label>Url de la imágen:</mat-label>
+            <input matInput type="text" required [(ngModel)]="heroe.alt_img" />
+        </mat-form-field>
+        <button class="btn btn-success btn-block" (click)="saveHero()"> <i class="bi bi-database-fill-check"></i> Guardar
+            Cambios </button>
+        <div *ngIf="this.heroe.id" style="margin-top: 11px;">
+            <button class="btn btn-danger btn-block" (click)="deleteHeroe(this.heroe.id)"> <i
+                    class="bi bi-database-fill-dash"></i>
+                Borrar Heroe</button>
+        </div>
+        <button [routerLink]="['/heroes/listado']" class="btn btn-info btn-block" style="margin-top: 11px;"><i class="bi bi-backspace-fill"></i> Volver al Listado</button>
+    </div>
+    <div fxFlex="50">
+        <img [src]="heroe | Imagen" />
+    </div>
+</div>
