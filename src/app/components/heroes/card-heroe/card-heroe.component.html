@@ -1,0 +1,35 @@
+<mat-grid-list cols="1" *ngIf="!heroe; else divHeroe">
+    <mat-grid-tile>
+
+    </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divHeroe class="mt-5">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px">
+        <div fxFlex="50" class="text-center">
+            <h1><i class="bi bi-person-circle"></i> <b> {{heroe.superhero}}</b></h1>
+            <mat-divider></mat-divider>
+            <br>
+            <img [src]="heroe | Imagen"/>
+        </div>
+        <div fxFlex="50" class="text-center">
+            <h2><i class="bi bi-person-badge-fill"></i><b> Información sobre el superHeroe:</b></h2>
+            <mat-divider></mat-divider>
+            <br>
+            <mat-list>
+                <mat-list-item>
+                    <h4><b>Nombre Real:</b> {{heroe.alter_ego}}</h4>
+                </mat-list-item>
+                <mat-list-item>
+                    <h4><b>Publicador: </b> {{heroe.publisher}}</h4>
+                </mat-list-item>
+                <mat-list-item>
+                    <h4><b>Primera Aparición: </b> {{heroe.first_appearance}}</h4>
+                </mat-list-item>
+                <mat-list-item>
+                    <h4><b>Personajes: </b> {{heroe.characters}}</h4>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+</ng-template>

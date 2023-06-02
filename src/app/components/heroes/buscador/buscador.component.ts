@@ -25,7 +25,6 @@ export class BuscadorComponent {
     if(!event.option.value){this.heroe = undefined; return;}
     let heroe: Heroe = event.option.value;
     this.term = heroe.superhero;
-
     this.heroesService.getHeroePorId(heroe.id).subscribe((heroe: Heroe) => this.heroe = heroe);
   }
  }

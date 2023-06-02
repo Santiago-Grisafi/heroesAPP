@@ -14,6 +14,7 @@ import { TarjetaHeroeComponent } from './heroes/heroe/tarjeta-heroe/tarjeta-hero
 import { PipeImage } from './heroes/pipes/pipeImage.pipe';
 import { BuscadorComponent } from './heroes/buscador/buscador.component';
 import { FormsModule } from '@angular/forms';
+import { CardHeroeComponent } from './heroes/card-heroe/card-heroe.component';
 
 
 @NgModule({
@@ -26,14 +27,15 @@ import { FormsModule } from '@angular/forms';
     CardComponent,
     TarjetaHeroeComponent,
     PipeImage,
-    BuscadorComponent
+    BuscadorComponent,
+    CardHeroeComponent
   ],
   imports: [
     CommonModule,
     HeroesRoutingModule,
     FlexLayoutModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
     ListadoComponent,
@@ -41,7 +43,8 @@ import { FormsModule } from '@angular/forms';
     AgregarComponent,
     BuscadorComponent,
     PipeImage,
-    TarjetaHeroeComponent
+    TarjetaHeroeComponent,
+    CardHeroeComponent
   ],
   providers:[
     HeroesService

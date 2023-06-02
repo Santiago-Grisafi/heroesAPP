@@ -3,6 +3,8 @@ import { Heroe, Publisher } from '../interface/heroe.model';
 import { HeroesService } from '../services/heroes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-agregar',
@@ -11,7 +13,7 @@ import { switchMap } from 'rxjs';
 })
 export class AgregarComponent implements OnInit {
 
-  constructor(private heroeService: HeroesService, private activatedRouter: ActivatedRoute, private router: Router) { }
+  constructor(private heroeService: HeroesService, private activatedRouter: ActivatedRoute, private router: Router, private snackBar: MatSnackBar, private snackDialog: MatDialog) { }
 
   show: boolean = false;
 
@@ -50,19 +52,28 @@ export class AgregarComponent implements OnInit {
     if (this.heroe.id) {
       this.heroeService.putHeroe(this.heroe).subscribe(() => {
         this.show = false;
+        this.showSnackBar("Heroe Actualizado con Éxito");
         return this.router.navigate(['/heroes/listado']);
       });
     } else {
       this.heroeService.postHeroe(this.heroe).subscribe((heroe: Heroe) => {
         this.show = true;
+        this.showSnackBar("Heroe Dado de Alta con Éxito");
         return this.router.navigate(['/heroes', heroe.id]);
       });
     }
   }
 
-  deleteHeroe(id: string) {
+  deleteHeroe = (id: string) => {
     this.heroeService.deleteHeroe(id).subscribe(() => {
+      this.showSnackBar("Heroe Borrado con Éxito");
       return this.router.navigate(['/heroes/listado']);
+    });
+  }
+
+  showSnackBar = (msg: string): void => {
+    this.snackBar.open(msg, 'Cerrar', {
+      duration: 2500
     });
   }
 

@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="container main-container form-container" style="text-align: center;">
+
+    <form autocomplete="off" id="form_login">
+        <img src="./../../../../assets/login.jpg" class="img-login">
+        <div class="form-outline mb-4" style="margin-top: 20px;">
+            <label class="form-label" for="form2Example1">Email</label>
+            <input type="email" id="form2Example1" class="form-control" placeholder="Ingrese su email" required />
+        </div>
+
+        <div class="form-outline mb-4" style="margin-top: 20px;">
+            <label class="form-label" for="form2Example2">Contraseña</label>
+            <input type="password" id="form2Example2" class="form-control" placeholder="Ingrese su contraseña"
+                required />
+        </div>
+
+        <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+                <div class="form-check">
+                    <!-- <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked /> -->
+                    <!-- <label class="form-check-label" for="form2Example31"> Recuerdame </label> -->
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-top: 30px;">Loguearse</button>
+
+        <div class="text-center" style="margin-top: 30px;">
+            <p>No sos un usuario? <a [routerLink]="['/auth/registro']">Registrarse</a></p>
+        </div>
+    </form>
+</div>

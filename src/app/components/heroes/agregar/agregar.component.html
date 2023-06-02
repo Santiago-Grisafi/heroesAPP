@@ -1,14 +1,19 @@
-<div *ngIf="this.heroe.id; else nuevoHeroe">
-    <h1 class="text-center"><b> Super Heroe a editar: </b> {{heroe.superhero}}</h1>
+<div *ngIf="this.heroe.id; else nuevoHeroe" class="alert alert-info pt-2">
+    <h1 class="text-center"><b> Super Heroe a editar: </b> {{heroe.superhero}} - <small>{{heroe.alter_ego |
+            titlecase}}</small></h1>
 </div>
 <ng-template #nuevoHeroe>
-    <h1 class="text-center"><b> Nuevo Heroe: </b></h1>
-    <div class="alert alert-info"
-        *ngIf="heroe.superhero.trim().length==0 && heroe.alter_ego.trim().length==0 || heroe.superhero.trim().length==0 || heroe.alter_ego.trim().length==0">
-        <h2 class="text-center">Los campos del nombre del superheroe y del alterego están vacíos</h2>
-    </div>
-    <div class="alert alert-success" *ngIf="heroe.superhero.trim().length>0 && heroe.alter_ego.trim().length>0">
-        <h1 class="text-center">{{heroe.superhero | titlecase}} - <small>{{heroe.alter_ego | titlecase}}</small></h1>
+    <div class="alert alert-success">
+        <h1 class="text-center"><b> Nuevo Heroe: </b></h1>
+
+        <div class="alert alert-info"
+            *ngIf="heroe.superhero.trim().length==0 && heroe.alter_ego.trim().length==0 || heroe.superhero.trim().length==0 || heroe.alter_ego.trim().length==0">
+            <h2 class="text-center">Los campos del nombre del superheroe y del alterego están vacíos</h2>
+        </div>
+        <div class="alert alert-success" *ngIf="heroe.superhero.trim().length>0 && heroe.alter_ego.trim().length>0">
+            <h1 class="text-center">{{heroe.superhero | titlecase}} - <small>{{heroe.alter_ego | titlecase}}</small>
+            </h1>
+        </div>
     </div>
 </ng-template>
 
@@ -47,14 +52,16 @@
             <mat-label>Url de la imágen:</mat-label>
             <input matInput type="text" required [(ngModel)]="heroe.alt_img" />
         </mat-form-field>
-        <button class="btn btn-success btn-block" (click)="saveHero()"> <i class="bi bi-database-fill-check"></i> Guardar
+        <button class="btn btn-success btn-block" (click)="saveHero()"> <i class="bi bi-database-fill-check"></i>
+            Guardar
             Cambios </button>
         <div *ngIf="this.heroe.id" style="margin-top: 11px;">
             <button class="btn btn-danger btn-block" (click)="deleteHeroe(this.heroe.id)"> <i
                     class="bi bi-database-fill-dash"></i>
                 Borrar Heroe</button>
         </div>
-        <button [routerLink]="['/heroes/listado']" class="btn btn-info btn-block" style="margin-top: 11px;"><i class="bi bi-backspace-fill"></i> Volver al Listado</button>
+        <button [routerLink]="['/heroes/listado']" class="btn btn-info btn-block" style="margin-top: 11px;"><i
+                class="bi bi-backspace-fill"></i> Volver al Listado</button>
     </div>
     <div fxFlex="50">
         <img [src]="heroe | Imagen" />
