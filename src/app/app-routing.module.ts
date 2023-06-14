@@ -4,12 +4,19 @@ import { HeroeComponent } from "./components/heroes/heroe/heroe.component";
 import { ListadoComponent } from "./components/heroes/listado/listado.component";
 import { AgregarComponent } from "./components/heroes/agregar/agregar.component";
 import { ErrorPageComponent } from "./shared/error-page/error-page.component";
+import { AuthGuard } from "./auth/guards/auth.guard";
 
 let routes: Routes =
     [
         { path: '404', component: ErrorPageComponent },
-        { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-        { path: 'heroes', loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule) },
+        {
+            path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+        },
+        {
+            path: 'heroes', loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule),
+            canLoad: [AuthGuard],
+            canActivate: [AuthGuard]
+        },
         { path: '**', redirectTo: '404', pathMatch: 'full' },
     ];
 

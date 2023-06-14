@@ -1,5 +1,5 @@
 export interface Auth{
-    id?: string,
+    id?: any | undefined,
     usuario: string,
     email: string,
     password: string,

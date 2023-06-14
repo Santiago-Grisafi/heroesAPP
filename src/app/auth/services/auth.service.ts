@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, map, tap } from "rxjs";
+import { Observable, map, tap, of } from "rxjs";
 import { Auth } from "../interfaces/auth.interface";
 import { environment } from "src/environments/environment.prod";
 
@@ -9,45 +9,44 @@ import { environment } from "src/environments/environment.prod";
 })
 export class AuthService {
 
-    
-  private baseUrl: string = environment.baseUrl;
-  private _auth: Auth | undefined;
 
-  get auth(): Auth {
-    return { ...this._auth! }
-  }
+    private baseUrl: string = environment.baseUrl;
+    private _auth!: Auth | undefined;
 
-  constructor( private http: HttpClient ) { }
+    get auth(): Auth {
+        return { ...this._auth! }
+    }
 
-
-  verificaAutenticacion(): Observable<boolean> {
-/* 
-    if ( !localStorage.getItem('token') ) {
-      return of(false);
-    } */
-
-    return this.http.get<Auth>(`${ this.baseUrl }/usuarios/1`)
-              .pipe(
-                map( auth => {
-                  this._auth = auth;
-                  return true;
-                })
-              );
-
-  }
+    constructor(private http: HttpClient) { }
 
 
-  login() {
-    return this.http.get<Auth>(`${ this.baseUrl }/usuarios/1`)
-              .pipe(
-                tap( auth => this._auth = auth ),
-                /* tap( auth => localStorage.setItem('token', auth.id ) ), */
-              );
-  }
+    verificaAutenticacion(): Observable<boolean> {
+        if (!localStorage.getItem('token')) {
+            return of(false);
+        }
 
-  logout() {
-    this._auth = undefined;
-  }
+        return this.http.get<Auth>(`${this.baseUrl}/usuarios/1`)
+            .pipe(map(auth => {
+                this._auth = auth;
+                return true;
+            }
+            )
+            );
+
+    }
+
+
+    login() {
+        return this.http.get<Auth>(`${this.baseUrl}/usuarios/1`)
+            .pipe(
+                tap(auth => { return this._auth = auth }),
+                tap(auth => localStorage.setItem('token', auth.id)),
+            );
+    }
+
+    logout() {
+        this._auth = undefined;
+    }
 
 
 }
