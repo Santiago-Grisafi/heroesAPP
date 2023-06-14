@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatToolbar } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-registro',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent {
+
+  register = () =>{
+    
+  }
 
 }

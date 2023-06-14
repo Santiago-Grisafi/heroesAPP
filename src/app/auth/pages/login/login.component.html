@@ -22,7 +22,8 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-top: 30px;">Loguearse</button>
+        <button type="button" class="btn btn-primary btn-block mb-4" style="margin-top: 30px;" (click)="login()">Loguearse</button>
+        <button type="button" class="btn btn-danger btn-block mb-4" style="margin-top: 30px;" (click)="whioutLogin()">Ingresar como Visitante</button>
 
         <div class="text-center" style="margin-top: 30px;">
             <p>No sos un usuario? <a [routerLink]="['/auth/registro']">Registrarse</a></p>
